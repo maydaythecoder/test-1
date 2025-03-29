@@ -11,9 +11,20 @@ interface ImagesProps {
   lag?: number;
 }
 
-const Images = ({ id, image, width, height, className, scrub, lag }: ImagesProps) => {
+const Images = ({ id, image, width, height, className }: ImagesProps) => {
   return (
-    <Image key={id} src={image} alt="image" width={width} height={height} className={className}  />
+    <div id={`image-${id}`} className={className}>
+      <Image
+        key={id}
+        src={image || '/fallback-image.jpg'}
+        alt="image"
+        width={width}
+        height={height}
+        className="w-full h-auto"
+        loading="lazy"
+        priority={false}
+      />
+    </div>
   )
 }
 

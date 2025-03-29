@@ -1,33 +1,68 @@
-import React from 'react'
+'use client';
+
+import React, { useEffect, useRef } from 'react'
 import Images from '../Images'
 import { Cards } from '@/constants/Data'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const Home = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    Cards.forEach((card) => {
+      const element = document.querySelector(`#image-${card.id}`);
+      if (element) {
+        gsap.fromTo(element, 
+          { y: 100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              scrub: card.scrub || 1,
+              markers: true, // Remove in production
+            },
+            delay: card.lag || 0,
+            duration: 1
+          }
+        );
+      }
+    });
+
+    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+  }, []);
+
   return (
-    <div style={{ 
+    <div ref={containerRef} style={{ 
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
       gap: '20px',
       alignItems: 'start',
       position: 'relative',
-      marginTop: '100px',
-      marginBottom: '100px',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      width: '90%'
+      minHeight: '200vh',
+      padding: '100px 0',
+      width: '90%',
+      margin: '0 auto'
     }}>
         {Cards.map((card, index) => (
-            <div key={card.id} style={{
-                paddingTop: index % 2 === 0 ? '450px' : '0',
-                marginTop: index % 2 === 1 ? '20px' : '0'
-            }}>
-                <Images 
-                    id={card.id} 
-                    image={card.image ?? ''}
-                    width={card.width ?? 0}
-                    height={card.height ?? 0}
-                />
-            </div>
+            card.image && (
+                <div key={card.id} style={{
+                    paddingTop: index % 2 === 0 ? '450px' : '0',
+                    marginTop: index % 2 === 1 ? '20px' : '0'
+                }}>
+                    <Images 
+                        id={card.id} 
+                        image={card.image}
+                        width={card.width}
+                        height={card.height}
+                    />
+                </div>
+            )
         ))}
     </div>
   )
