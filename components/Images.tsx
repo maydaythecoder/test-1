@@ -7,11 +7,13 @@ interface ImagesProps {
   width: number;
   height: number;
   className?: string;
+  scrub?: number;
+  lag?: number;
 }
 
-const Images = ({ id, image, width, height, className }: ImagesProps) => {
+const Images = ({ id, image, width, height, className, scrub, lag }: ImagesProps) => {
   return (
-    <Image key={id} src={image} alt="image" width={width} height={height} className={className} />
+    <Image key={id} src={image} alt="image" width={width} height={height} className={className}  />
   )
 }
 
