@@ -4,31 +4,31 @@ export const Cards = [
         image: process.env.NEXT_PUBLIC_IMAGE_ONE,
         width: 600,
         height: 400,
-        scrub: 1,
-        lag: 0.5
+        scrub: 2,
+        lag: 0.3
     },
     {
         id: 2,
         image: process.env.NEXT_PUBLIC_IMAGE_TWO,
         width: 600,
         height: 400,
-        scrub: 1,
-        lag: 0
+        scrub: 1.8,
+        lag: 0.1
     },
     {
         id: 3,
         image: process.env.NEXT_PUBLIC_IMAGE_THREE,
         width: 600,
         height: 400,
-        scrub: 1,
-        lag: 1
+        scrub: 2.2,
+        lag: 0.5
     },
     {
         id: 4,
         image: process.env.NEXT_PUBLIC_IMAGE_FOUR,
         width: 600,
         height: 400,
-        scrub: 1,
-        lag: 2
+        scrub: 2.5,
+        lag: 0.7
     }
 ]

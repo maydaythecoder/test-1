@@ -16,19 +16,19 @@ const Home = () => {
       const element = document.querySelector(`#image-${card.id}`);
       if (element) {
         gsap.fromTo(element, 
-          { y: 100, opacity: 0 },
+          { y: 150, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            ease: "slow(0.7, 0.7)",
             scrollTrigger: {
               trigger: element,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: card.scrub || 1,
-              markers: true, // Remove in production
+              start: `top ${80 + (card.lag * 15)}%`,
+              end: `bottom ${20 - (card.lag * 5)}%`,
+              scrub: card.scrub,
+              markers: false,
             },
-            delay: card.lag || 0,
-            duration: 1
+            duration: 2 + card.lag,
           }
         );
       }

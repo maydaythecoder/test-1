@@ -37,6 +37,7 @@ html {
   height: 100%;
   overflow: hidden;
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 #smooth-wrapper {
@@ -60,8 +61,14 @@ html {
   min-height: 100vh;
 }
 
-/* Add smooth transitions */
+/* Enhanced animation properties */
 #image-container div {
   will-change: transform, opacity;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Better scroll experience */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
