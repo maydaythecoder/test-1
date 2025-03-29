@@ -16,19 +16,20 @@ const Home = () => {
       const element = document.querySelector(`#image-${card.id}`);
       if (element) {
         gsap.fromTo(element, 
-          { y: 150, opacity: 0 },
+          { y: 200, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            ease: "slow(0.7, 0.7)",
+            ease: "slow(0.8, 0.6)",
             scrollTrigger: {
               trigger: element,
-              start: `top ${80 + (card.lag * 15)}%`,
-              end: `bottom ${20 - (card.lag * 5)}%`,
-              scrub: card.scrub,
+              start: `top ${75 + (card.lag * 20)}%`,
+              end: `bottom ${25 - (card.lag * 7)}%`,
+              scrub: card.scrub * 1.5,
               markers: false,
             },
-            duration: 2 + card.lag,
+            duration: 3 + (card.lag * 2),
+            delay: card.lag * 0.8
           }
         );
       }
@@ -58,8 +59,8 @@ const Home = () => {
                     <Images 
                         id={card.id} 
                         image={card.image}
-                        width={card.width}
-                        height={card.height}
+                        width={card.width ? Number(card.width) : 600}
+                        height={card.height ? Number(card.height) : 400}
                     />
                 </div>
             )
