@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 interface ImagesProps {
-    id: number;
+  id: number;
   image: string;
   width: number;
   height: number;
@@ -14,18 +14,8 @@ interface ImagesProps {
 const Images = ({ id, image, width, height, className }: ImagesProps) => {
   return (
     <div id={`image-${id}`} className={className}>
-      <Image
-        key={id}
-        src={image || '/fallback-image.jpg'}
-        alt="image"
-        width={width}
-        height={height}
-        className="w-full h-auto"
-        loading="lazy"
-        priority={false}
-      />
+      <Image key={id} src={image || '/fallback-image.jpg'} alt="image" width={width} height={height} className="w-full h-auto" loading="lazy" priority={false} />
     </div>
-  )
-}
+  )}
 
 export default Images
